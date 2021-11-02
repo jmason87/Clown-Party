@@ -12,7 +12,7 @@ export const displayReservations = () => {
                 ${tomato.childName}
                 <button class="request__delete"
                         id="request--${tomato.id}">
-                    Delete
+                    Deny
                 </button>
             </li>
         `
