@@ -1,4 +1,5 @@
 import { getParties } from "./dataAccess.js"
+import { deleteRequest } from "./dataAccess.js"
 
 
 
@@ -6,7 +7,15 @@ import { getParties } from "./dataAccess.js"
 export const displayReservations = () => {
     const parties = getParties()
     const convertToList = (tomato) => {
-        return `<li>${tomato.childName}</li>`
+        return `
+            <li>
+                ${tomato.childName}
+                <button class="request__delete"
+                        id="request--${tomato.id}">
+                    Delete
+                </button>
+            </li>
+        `
     }
 
     let html = `
@@ -17,3 +26,12 @@ export const displayReservations = () => {
     `
     return html            
 } 
+
+const mainContainer = document.querySelector("#container")
+
+mainContainer.addEventListener("click", click => {
+    if (click.target.id.startsWith("request--")) {
+        const [,requestId] = click.target.id.split("--")
+        deleteRequest(parseInt(requestId))
+    }
+})

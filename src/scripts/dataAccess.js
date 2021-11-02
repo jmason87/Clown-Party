@@ -40,3 +40,12 @@ export const sendReservation = (userServiceRequest) => {
             mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
+
+export const deleteRequest = (id) => {
+    return fetch(`${API}/reservations/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
